@@ -1,0 +1,51 @@
+<ion-view view-title="{{$root.data.contact.info.name}}">
+  <ion-nav-bar>
+    <ion-nav-buttons side="right">
+      <!-- A spinner to show until the data arrives -->
+      <ion-spinner icon="lines" class="spinner-positive" ng-if="$root.loaders.landing === true"></ion-spinner>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="content-landing" scroll="false" ng-controller="MainController">
+    <i class="ion-icon icon-about" ng-class="{'ion-ios-information-outline':$root.bools.showAbout !== true,'ion-ios-close-outline':$root.bools.showAbout === true}" ng-click="$root.bools.showAbout = !$root.bools.showAbout"></i>
+
+    <div class="container-featured-event" ng-click="$root.getEventDetails($root.data.events[0],true);">
+    	<div class="row">
+    		<div class="subtitle">Next event</div>
+    	</div>
+    	<div class="row">
+    		<div class="title" ng-bind="$root.data.events[0].title"></div>
+    	</div>
+    	<div class="row">
+	    	<div class="col-50 featured-left"><i class="ion-icon ion-ios-calendar-outline"></i>{{$root.data.events[0].date}}</div>
+	    	<div class="col-50 featured-right">{{$root.data.events[0].time}}<i class="ion-icon ion-ios-clock-outline"></i></div>
+    	</div>
+    	<div class="row">
+	    	<div class="col-50 featured-left"><i class="ion-icon ion-ios-navigate-outline"></i>{{$root.data.events[0].city}}</div>
+	    	<div class="col-50 featured-right">{{$root.data.events[0].venue_name}}<i class="ion-icon ion-ios-location-outline"></i></div>
+    	</div>
+    </div>
+  </ion-content>
+
+  <div class="container-about animate-about-show" ng-show="$root.bools.showAbout === true">
+    <!-- Control buttons -->
+    <i ng-click="$root.bools.editAbout = true" ng-show="$root.bools.editAbout !== true" class="ion-icon ion-ios-compose-outline"></i>
+    <i ng-click="$root.bools.editAbout = false;$root.getAbout()" ng-show="$root.bools.editAbout === true" class="ion-icon ion-ios-close-outline"></i>
+    <i ng-click="$root.bools.editAbout = false;$root.postAbout()" ng-show="$root.bools.editAbout === true" class="ion-icon ion-ios-checkmark-outline"></i>
+
+    <!-- Title -->
+  	<h3 ng-if="$root.bools.editAbout !== true" class="about-title" ng-bind="$root.data.about.title"></h3>
+    <!-- Input title -->
+    <label class="item item-input" ng-if="$root.bools.editAbout === true">
+      <i class="icon ion-ios-paper-outline placeholder-icon"></i>
+      <input type="text" ng-model="$root.inputs.aboutTitle" placeholder="Title">
+    </label>
+
+    <!-- Body -->
+  	<p ng-if="$root.bools.editAbout !== true" class="about-body" ng-bind="$root.data.about.body"></p>
+    
+    <!-- Input body -->
+    <textarea ng-if="$root.bools.editAbout === true" placeholder="Description" ng-model="$root.inputs.aboutBody"></textarea>
+
+  </div>
+</ion-view>

@@ -1,0 +1,619 @@
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+//Defining background colors for info messages
+
+.bg-light{background-color:$light;}
+.bg-stable{background-color:$stable;}
+.bg-positive{background-color:$positive;}
+.bg-calm{background-color:$calm;}
+.bg-balanced{background-color:$balanced;}
+.bg-energized{background-color:$energized;}
+.bg-assertive{background-color:$assertive;}
+.bg-royal{background-color:$royal;}
+.bg-dark{background-color:$dark;}
+
+
+//Info message that appears upon errors or successful operations
+.info-message{
+	position:absolute;
+	top:0;
+	height:45px;
+	width:100%;
+	text-align:center;
+	text-transform:uppercase;
+	font-weight:400;
+	font-size:1em;
+	z-index:9999999;
+	color:white;
+	overflow:hidden;
+	left:50%;
+	margin-left:-50%;
+	margin-top:0;
+	line-height:2.8em;
+	border-radius:4px;
+	border:1px solid rgba(0,0,0,0.1);
+
+	.info-title{
+		white-space: nowrap;
+		opacity:1;
+	}
+}
+
+.left-buttons{
+	color:$positive;
+	font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+	font-size:16px;
+	font-stretch:normal;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	position:relative;
+	top:7px;
+
+	i{
+		margin-right:10px;
+	}
+}
+
+.close-video-tutorial{
+	color:$positive;
+	position:absolute;
+	right:10px;
+	top:17px;
+	font-size:24px;
+}
+
+.video-tutorial{
+	margin-top:95px;
+}
+
+.container-message{
+	margin-top:80px;
+	text-align:center;
+	
+	p{
+		color:$positive;
+		font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+		font-size:14px;
+		font-stretch:normal;
+		font-style:normal;
+		font-variant:normal;
+		font-weight:normal;
+	}
+
+	i{
+		font-size:34px;
+		color:$positive;
+	}
+}
+
+
+.media-subtab{
+	border-top:1px solid #b2b2b2;
+	background-color:rgb(248, 248, 248);
+	position:absolute;
+	bottom:48px;
+	height:45px;
+	z-index: 999;
+
+	.col-33{
+		text-align:center;
+		cursor:pointer;
+		text-decoration:none;
+
+		&:active{
+			color:$positive;
+
+			i,span{color:$positive}
+		}
+
+		i{
+			font-size:20px;
+			color:rgb(68, 68, 68);
+		}
+		span{
+			display:block;
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size:10px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			height:auto;
+			line-height:14px;
+			color:rgb(68, 68, 68);
+		}
+	}
+}
+
+.tab-nav.tabs{
+	z-index:999999999;
+}
+
+ion-content{
+	.scroll{
+		height:100%;
+	}
+}
+
+.container-about{
+	position:fixed;
+	background-color:$stable;
+	margin:10px;
+	top:80px;
+	opacity:0.9;
+	width:90%;
+	display:inline-block;
+	left:45%;
+	margin-left:-40%;
+	box-shadow:1px 1px 10px $dark;
+
+	.ion-ios-compose-outline{
+		position:absolute;
+		right:15px;
+		top:10px;
+		font-size:24px;
+		color:$positive;
+	}
+
+	.ion-ios-close-outline,.ion-ios-checkmark-outline{
+		transition:all 0.5s;
+		position:absolute;
+		top:10px;
+		right:15px;
+		font-size:24px;
+		color:$positive;
+		z-index:999;
+	}
+
+	.ion-ios-checkmark-outline{
+		right:50px;
+	}
+
+	input{
+		width:100%;
+	}
+
+	textarea{
+		padding:10px;
+		height:300px;
+		width:calc(100% + 2px);
+		margin-left:-1px;
+	}
+
+	.about-title{
+		margin-top:20px;
+		text-align:center;
+	}
+
+	.about-body{
+		margin:20px;
+		margin-left:30px;
+		margin-right:30px;
+		color:$dark;
+	}
+}
+
+
+//LANDING PAGE
+
+ion-content.content-landing{
+	background:url('../img/background.jpg') no-repeat;
+	background-size:cover;
+	background-position:center;
+	.icon-about{
+		position:absolute;
+		right:20px;
+		top:10px;
+		font-size:24px;
+		color:$stable;
+	}
+
+	.container-featured-event.active{
+		opacity:0;
+		height:100%;
+		width:200%;
+	}
+	.container-featured-event{
+		border:1px solid #b2b2b2;
+		position:absolute;
+		width:100%;
+		height:100px;
+		bottom:0;
+		background-color:$stable;
+		opacity:0.9;
+		transition:all 0.7s ease;
+
+		.subtitle{
+			width:100%;
+		}
+
+		.title{
+			width:100%;
+			text-align:center;
+		}
+
+		.col-50.featured-left{
+			padding-left:10px;
+			i{
+				margin-right:10px;
+			}
+		}
+
+		.col-50.featured-right{
+			text-align:right;
+			padding-right:10px;
+			i{
+				margin-left:10px;
+			}
+		}
+}
+}
+
+
+//EVENTS PAGE
+
+ion-content.content-events{
+	.event-card{
+		h2{
+			margin-top:10px;
+			text-align:center;
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size
+			:20px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			color:rgb(68, 68, 68);
+		}
+		.col-50.featured-left{
+			padding-left:10px;
+			i{
+				margin-right:10px;
+			}
+		}
+		.col-50.featured-right{
+			padding-right:10px;
+			text-align:right;
+			i{
+				margin-left:10px;
+			}
+		}
+		.item-image{
+
+		}
+		.icon-read-more{
+			float:right;
+			padding-right:0;
+			margin-top:0;
+			i{
+				margin-top:0;
+			}
+		}
+		.icon-read-more.activated{
+			background-color:white !important;
+			i{
+				background-color:white !important;
+			}
+		}
+	}
+}
+
+ion-nav-bar{
+	ion-spinner{
+		margin-top:3px;
+		margin-right:5px;
+	}
+}
+
+
+//EVENT DETAILS
+
+.content-event-details{
+	background-size:cover;
+	background-position:center;
+	background-repeat:no-repeat;
+	.event-card{
+		h2{
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size:24px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			text-align:center;
+			margin-top:20px;
+		}
+
+		.card-item{
+			width:100%;
+			font-size:16px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			padding-top:5px;
+			padding-bottom:5px;
+
+			i{
+				margin-left:10px;
+				margin-right:10px;
+			}
+
+			i.ion-ios-location-outline{
+				margin-left:12.5px;
+			}
+		}
+
+		.item-image{
+			margin-top:10px;
+			margin-bottom:10px;
+			img{
+
+			}
+		}
+
+		.card-item-phone,.card-item-url{
+			margin-bottom:10px;
+			cursor:pointer;
+			display:inline-block;
+			width:100%;
+			text-align:center;
+			font-size:24px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			text-decoration:none;
+			color:$positive;
+
+			i{
+				margin-right:10px;
+			}
+
+			i.ion-ios-world{
+				position:relative;
+				top:3px;
+			}
+		}
+	}
+
+	.location-card{
+		.location-title{
+			margin-top:10px;
+			margin-bottom:10px;
+			display:inline-block;
+			width:100%;
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size:18px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			text-decoration:none;
+
+			i{
+				margin-left:10px;
+				margin-right:10px;
+				font-size:24px;
+				color:$positive;
+
+				animation: locationIcon 2s infinite;
+			}
+		}
+
+		.google-map{
+		}
+	}
+}
+
+//SOCIAL
+
+.content-social{
+
+	.ion-ios-compose-outline{
+		position:absolute;
+		right:15px;
+		font-size:24px;
+		color:$positive;
+	}
+
+	.ion-ios-close-outline,.ion-ios-checkmark-outline{
+		top:-30px;
+		transition:all 0.5s;
+		position:absolute;
+		right:15px;
+		font-size:24px;
+		color:$positive;
+		z-index:999;
+	}
+
+	.ion-ios-checkmark-outline{
+		right:50px;
+	}
+
+	h2 {
+		text-align:center;
+		margin-top:15px;
+		color:$dark;
+		font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+		font-size:18px;
+		font-stretch:normal;
+		font-style:normal;
+		font-variant:normal;
+		font-weight:normal;
+	}
+	
+	.social-container{
+		text-align:center;
+		margin-top:15px;
+		margin-bottom:20px;
+
+		.ion-icon{
+			margin:20px;
+			color:$positive;
+			font-size:30px;
+		}
+	}
+
+	.list{
+		.item.activated{
+			background-color:white !important;
+		}
+		i {
+			font-size:14px;
+		}
+	}
+
+	.row{
+		.col{
+			text-align:center;
+			i{
+				font-size:24px;
+			}
+		}
+	}
+}
+
+//NEWS
+
+.content-news{
+
+	.news-card{
+		.ion-ios-compose-outline{
+			position:absolute;
+			right:15px;
+			top:10px;
+			font-size:24px;
+			color:$positive;
+		}
+
+		.ion-ios-close-outline,.ion-ios-checkmark-outline{
+			transition:all 0.5s;
+			position:absolute;
+			top:10px;
+			right:15px;
+			font-size:24px;
+			color:$positive;
+			z-index:999;
+		}
+
+		.ion-ios-checkmark-outline{
+			right:50px;
+		}
+
+		textarea{
+			padding:10px;
+			width:100%;
+			padding-left:20px;
+			height:150px;
+		}
+
+		h2{
+			margin-left:10px;
+			margin-top:10px;
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size:24px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+		}
+
+		p{
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size:16px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			margin-left:10px;
+		}
+
+		.icon-url{
+			i{
+				font-size:16px;
+			}
+		}
+	}
+}
+
+//MEDIA
+
+.content-media{
+	text-align:center;
+	.video-tutorial-button{
+		color:$positive;
+		font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+		font-size:14px;
+		font-stretch:normal;
+		font-style:normal;
+		font-variant:normal;
+		font-weight:normal;
+		margin-top:20px;
+		display:inline-block;
+	}
+}
+
+
+//**********
+//ANIMATIONS
+//**********
+
+
+//Animation for subtab
+.animate-subtab-show.ng-hide-add.ng-hide-add-active,
+.animate-subtab-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.animate-subtab-show.ng-hide {
+  bottom: 0 !important;
+}
+
+//Animation for about card
+.animate-about-show.ng-hide-add.ng-hide-add-active,
+.animate-about-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.animate-about-show.ng-hide {
+  opacity:0;
+}
+
+//Animation for about card
+.animate-video-tutorial-show.ng-hide-add.ng-hide-add-active,
+.animate-video-tutorial-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.animate-video-tutorial-show.ng-hide {
+  opacity:0;
+}
+
+//Location icon animation
+@keyframes locationIcon {
+    100% {
+    	-ms-transform: rotate(360deg); /* IE 9 */
+	    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+	    transform: rotate(360deg);
+    }
+}

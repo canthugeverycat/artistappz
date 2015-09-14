@@ -1,0 +1,44 @@
+<ion-view view-title="News">
+  <ion-content class="content-news">
+  	<!--A message to display when there are no news to display-->
+  	<div class="container-message" ng-if="$root.data.news.length === 0">
+  		<p>There are no news to show.</p>
+  		<i class="ion-icon ion-sad-outline"></i>
+  	</div>
+
+  	<div class="list card news-card" ng-repeat="news in $root.data.news track by $index">
+  		<!-- Control buttons -->
+  		<i ng-click="$root.bools.editNews = true" ng-show="$root.bools.editNews !== true" class="ion-icon ion-ios-compose-outline"></i>
+	    <i ng-click="$root.bools.editNews = false;$root.getNews()" ng-show="$root.bools.editNews === true" class="ion-icon ion-ios-close-outline"></i>
+	    <i ng-click="$root.bools.editNews = false;$root.postNews()" ng-show="$root.bools.editNews === true" class="ion-icon ion-ios-checkmark-outline"></i>
+
+		<h2 ng-if="$root.bools.editNews !== true" ng-bind="news.title"></h2>
+
+		<!-- Title input -->
+		<label class="item item-input" ng-if="$root.bools.editNews === true">
+			<i class="icon ion-ios-paper-outline placeholder-icon"></i>
+			<input type="text" ng-model="$root.inputs.newsTitle" placeholder="News title">
+		</label>
+
+		<p ng-if="$root.bools.editNews !== true" ng-bind="news.body"></p>
+
+		<!-- Input body -->
+    	<textarea ng-if="$root.bools.editNews === true" placeholder="Description" ng-model="$root.inputs.aboutNews"></textarea>
+
+		<div ng-if="$root.bools.editNews !== true" class="item item-image">
+			<img src="img/background.jpg">
+		</div>
+
+		<a ng-if="$root.bools.editNews !== true" class="item item-icon-left positive icon-url" ng-click="$root.openLink(news.url)">
+			<i class="icon ion-ios-world-outline"></i>
+			{{news.url}}
+		</a>
+
+		<!-- Title input -->
+		<label class="item item-input" ng-if="$root.bools.editNews === true">
+			<i class="icon ion-ios-world-outline placeholder-icon"></i>
+			<input type="text" ng-model="$root.inputs.newsUrl" placeholder="News url">
+		</label>
+	</div>
+  </ion-content>
+</ion-view>

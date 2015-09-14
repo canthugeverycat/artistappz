@@ -1,0 +1,44 @@
+<!-- Media Subtab -->
+
+<div class="row media-subtab animate-subtab-show" ng-show="$root.bools.showMedia === true;">
+  <a href="#/tab/media" ng-click="$root.bools.showMedia = false;$root.mediaTab = 0" class="col-33">
+    <i class="ion-icon ion-ios-photos-outline"></i>
+    <span>Photos</span>
+  </a>
+  <a href="#/tab/media" ng-click="$root.bools.showMedia = false;$root.mediaTab = 1" class="col-33">
+    <i class="ion-icon ion-ios-musical-notes"></i>
+    <span>Music</span>
+  </a>
+  <a href="#/tab/media" ng-click="$root.bools.showMedia = false;$root.mediaTab = 2" class="col-33">
+    <i class="ion-icon ion-ios-videocam-outline"></i>
+    <span>Videos</span>
+  </a>
+</div>
+
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+  <!-- Home Tab -->
+  <ion-tab title="Home" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/landing">
+    <ion-nav-view name="tab-landing"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Events Tab -->
+  <ion-tab title="Events" icon-off="ion-ios-flag-outline" icon-on="ion-ios-flag" href="#/tab/events">
+    <ion-nav-view name="tab-events"></ion-nav-view>
+  </ion-tab>
+
+  <!-- News Tab -->
+  <ion-tab title="News" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/news">
+    <ion-nav-view name="tab-news"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Media Tab -->
+  <ion-tab title="Media" icon-off="ion-ios-play-outline" icon-on="ion-ios-play" ng-click="$root.bools.showMedia = !$root.bools.showMedia;">
+    <ion-nav-view name="tab-media"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Contact Tab -->
+  <ion-tab title="Social" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/social">
+    <ion-nav-view name="tab-social"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>
