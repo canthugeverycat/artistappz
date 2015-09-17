@@ -838,6 +838,23 @@ ion-nav-bar{
 
 //SETTINGS screen
 .content-settings{
+
+	.container-new-app{
+		.ion-ios-arrow-down,.ion-ios-arrow-up{
+			position:absolute;
+			top:15px;
+			right:10px;
+			font-size:24px;
+		}
+	}
+
+	.ion-ios-arrow-down,.ion-ios-arrow-up{
+		position:absolute;
+		top:25px;
+		right:10px;
+		font-size:24px;
+	}
+
 	.container-color-boxes{
 		position:absolute;
 		z-index:999999;

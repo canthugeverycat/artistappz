@@ -8332,6 +8332,16 @@ ion-nav-bar ion-spinner {
       letter-spacing: normal;
       line-height: 16px; }
 
+.content-settings .container-new-app .ion-ios-arrow-down, .content-settings .container-new-app .ion-ios-arrow-up {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  font-size: 24px; }
+.content-settings .ion-ios-arrow-down, .content-settings .ion-ios-arrow-up {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+  font-size: 24px; }
 .content-settings .container-color-boxes {
   position: absolute;
   z-index: 999999;

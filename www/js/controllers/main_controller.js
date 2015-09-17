@@ -1,7 +1,11 @@
 angular.module('main.controller', [])
 
-.controller('MainController',function($scope, $rootScope, RESTFunctions, $location, $timeout, $sce, InfoHandling, $ionicPopover, $ionicLoading) {
+.controller('MainController',function($scope, $rootScope, RESTFunctions, $location, $timeout, $sce, InfoHandling, $ionicPopover, $ionicLoading, $ionicScrollDelegate) {
 	$rootScope.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJ2ZXJ0dmVydCIsIl9pZCI6MCwiaWF0IjoxNDQyNDAyNjMyfQ.Xpk8BiF7KbsA1Kh9wSj57YQpheR6TLGZQWYK7-nO2m0';
+
+	$rootScope.jiggle = function() {
+		$ionicScrollDelegate.resize();
+	};
 
 	//Open a link in phone browser
 	$rootScope.openLink = function (templink) {var ref = window.open(templink, "_system");};
@@ -73,7 +77,17 @@ angular.module('main.controller', [])
 		});
 	};
 
-	setInterval(function(){console.log($rootScope.bools.editNews)},500);
+	//Create a new app
+	$rootScope.createApp = function() {
+		$rootScope.loaders.settings = true;
+		RESTFunctions.post({
+			url:'app',
+			data:'token=' + $rootScope.token + '&app_name=' + $rootScope.inputs.appName,
+			callback: function(response) {
+				$rootScope.loaders.settings = false;
+			}
+		})
+	};
 
 
 	//Set the active icon type
