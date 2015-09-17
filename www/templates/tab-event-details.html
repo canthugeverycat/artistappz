@@ -1,8 +1,8 @@
 <ion-view view-title="Event Details">
-	<ion-nav-bar>
+	<ion-nav-bar class="{{$root.settings.colors.text_color}}">
 		<ion-nav-buttons side="left" class="container-back-button">
 			<!-- A spinner to show until the data arrives -->
-			<i ng-click="$root.goTo('tab/events')"><i class="ion-icon ion-ios-arrow-left"></i>Back</i>
+			<i ng-click="$root.goTo('tab/events')" class="{{$root.settings.colors.text_color}}"><i class="ion-icon ion-ios-arrow-left"></i>Back</i>
 		</ion-nav-buttons>
 		<ion-nav-buttons side="right">
 			<!-- A spinner to show until the data arrives -->
@@ -12,11 +12,11 @@
 
   	<ion-content class="content-event-details" style="background:url('../img/background.jpg')">
 	  	<div class="list card event-card">
-			<h2>{{$root.data.selectedEvent.title}}</h2>
+			<h2 class="{{$root.settings.colors.text_color}}">{{$root.data.selectedEvent.title}}</h2>
 
-	    	<div class="card-item"><i class="ion-icon ion-ios-calendar-outline"></i>{{$root.data.selectedEvent.date}}</div>
-	    	<div class="card-item"><i class="ion-icon ion-ios-clock-outline"></i>{{$root.data.selectedEvent.time}}</div>
-		    <div class="card-item"><i class="ion-icon ion-ios-location-outline"></i>{{$root.data.selectedEvent.venue_name}}</div>
+	    	<div class="card-item {{$root.settings.colors.text_color}}"><i class="ion-icon {{$root.settings.icons.date}}"></i>{{$root.data.selectedEvent.date}}</div>
+	    	<div class="card-item {{$root.settings.colors.text_color}}"><i class="ion-icon {{$root.settings.icons.time}}"></i>{{$root.data.selectedEvent.time}}</div>
+		    <div class="card-item {{$root.settings.colors.text_color}}"><i class="ion-icon {{$root.settings.icons.venue}}"></i>{{$root.data.selectedEvent.venue_name}}</div>
 
 			<div class="item item-image">
 				<img src="img/background.jpg">
@@ -24,16 +24,16 @@
 
 			<div class="row">
 				<div class="col">
-					<a href="tel:{{$root.data.selectedEvent.phone}}" class="card-item-phone"><i class="ion-icon ion-ios-telephone"></i></a>	
+					<a href="tel:{{$root.data.selectedEvent.phone}}" class="card-item-phone"><i class="ion-icon {{$root.settings.icons.phone}} {{$root.settings.colors.primary_color}}"></i></a>	
 				</div>
 				<div class="col">
-					<a ng-click="$root.openLink($root.data.selectedEvent.url)" class="card-item-url"><i class="ion-icon ion-ios-world"></i></a>	
+					<a ng-click="$root.openLink($root.data.selectedEvent.url)" class="card-item-url"><i class="ion-icon {{$root.settings.icons.website}} {{$root.settings.colors.primary_color}}"></i></a>	
 				</div>
 			</div>
 		</div>
 
 		<div class="list card location-card">
-			<div class="location-title"><i class="ion-icon ion-ios-navigate-outline"></i>{{$root.data.selectedEvent.address}}, {{$root.data.selectedEvent.city}}, {{$root.data.selectedEvent.state}}</div>
+			<div class="location-title {{$root.settings.colors.text_color}}"><i class="ion-icon {{$root.settings.icons.city}} {{$root.settings.colors.primary_color}}"></i>{{$root.data.selectedEvent.address}}, {{$root.data.selectedEvent.city}}, {{$root.data.selectedEvent.state}}</div>
 
 			<img ng-if="$root.data.selectedEvent.latitude !== null" open-link="http://maps.google.com/maps?q=loc:{{$root.data.selectedEvent.latitude}}+{{$root.data.selectedEvent.longitude}}&amp;" class="google-map" ng-src="https://maps.googleapis.com/maps/api/staticmap?center={{$root.data.selectedEvent.latitude}},{{$root.data.selectedEvent.longitude}}&zoom=17&size=500x350&maptype=roadmap&markers={{$root.data.selectedEvent.latitude}},{{$root.data.selectedEvent.longitude}}">
 		</div>

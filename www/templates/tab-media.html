@@ -1,20 +1,183 @@
 <ion-view view-title="Media">
+  <ion-nav-bar class="{{$root.settings.colors.text_color}}">
+    <ion-nav-buttons side="right">
+      <!-- A spinner to show until the data arrives -->
+      <ion-spinner icon="lines" class="spinner-loader" ng-if="$root.loaders.media === true"></ion-spinner>
+    </ion-nav-buttons>
+  </ion-nav-bar>
   <!-- <img ng-show="$root.bools.showVideoTutorial === true" class="video-tutorial animate-video-tutorial-show" src="../img/getvideoid.gif">
   <a ng-click="$root.bools.showVideoTutorial = true" class="video-tutorial-button"><i class="ion-icon ion-ios-help-outline"></i>&nbsp;&nbsp;How do I get the video ID</a> -->
   <ion-content class="content-media">
-  	<div class="container-media-photos" ng-if="$root.mediaTab === 0"></div>
+  	<div class="container-media-photos" ng-if="$root.mediaTab === 0">
+      <!--A message to display when there is no music to display-->
+      <div class="container-message" ng-if="$root.data.media.photos.length === 0">
+        <p>There are no photos to show.</p>
+        <i class="ion-icon {{$root.settings.icons.subtab_1}}"></i>
+      </div>      
+    </div>
+
+    <!-- Music container -->
     <div class="container-media-music" ng-if="$root.mediaTab === 1">
+
+      <!-- Add music item -->
+      <i ng-click="$root.bools.addMusic = true;" ng-if="$root.bools.addMusic !== true" class="ion-icon control-create {{$root.settings.icons.create}} {{$root.settings.colors.primary_color}}"></i>
+
+      <div class="container-add-music-item list animate-opacity-show" ng-show="$root.bools.addMusic === true">
+
+        <!-- Music Item ID -->
+        <label class="item item-input" ng-if="$root.bools.addMusic === true;">
+          <i class="icon {{$root.settings.icons.title_edit}} placeholder-icon"></i>
+          <input type="text" ng-model="$root.inputs.addMusicId" placeholder="Music ID">
+        </label>
+
+        <!-- Platform select -->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Platform
+          </div>
+          <select ng-model="$root.inputs.addMusicPlatform">
+            <option value="soundcloud">Soundcloud</option>
+            <option value="mixcloud">Mixcloud</option>
+          </select>
+        </label>
+
+        <!-- Control buttons -->
+        <i ng-click="$root.bools.addMusic = false" ng-if="$root.bools.addMusic === true" class="ion-icon {{$root.settings.icons.cancel}} {{$root.settings.colors.primary_color}}"></i>
+        <i ng-click="$root.bools.addMusic = false;$root.postMusic($index);" ng-if="$root.bools.addMusic === true" class="ion-icon {{$root.settings.icons.finish}} {{$root.settings.colors.primary_color}}"></i>
+      </div>
+
     	<!--A message to display when there is no music to display-->
 	  	<div class="container-message" ng-if="$root.data.media.music.length === 0">
-	  		<p>There is no music to show.</p>
-	  		<i class="ion-icon ion-sad-outline"></i>
+	  		<p class="{{$root.settings.colors.primary_color}}">There is no music to show.</p>
+	  		<i class="ion-icon {{$root.settings.icons.subtab_3}} {{$root.settings.colors.primary_color}}"></i>
 	  	</div>
- 
-    	<iframe ng-repeat="music in $root.data.media.music track by $index" width="100%" height="150" scrolling="no" frameborder="no" ng-src="{{music.media_id}}"></iframe>
+
+      <!-- Music item -->
+      <div class="container-music-item animate-opacity-show" ng-repeat="music in $root.data.media.music track by $index">
+
+        <!-- Control buttons -->
+        <i ng-click="$root.bools.editMusic = $index;" ng-if="$root.bools.editMusic !== $index" class="ion-icon {{$root.settings.icons.edit}} {{$root.settings.colors.primary_color}}"></i>
+        <i ng-click="$root.bools.editMusic = -1;$root.getMedia();" ng-if="$root.bools.editMusic === $index" class="ion-icon {{$root.settings.icons.cancel}} {{$root.settings.colors.primary_color}}"></i>
+        <i ng-click="$root.bools.editMusic = -1;$root.updateMusic($index);" ng-if="$root.bools.editMusic === $index" class="ion-icon {{$root.settings.icons.finish}} {{$root.settings.colors.primary_color}}"></i>
+        <i ng-click="$root.bools.editMusic = -1;$root.deleteMusic($index);" ng-if="$root.bools.editMusic === $index" class="ion-icon {{$root.settings.icons.delete}}"></i>
+
+        <div class="container-edit-music animate-opacity-show" ng-show="$root.bools.editMusic === $index;">
+          <!-- Music input -->
+          <label class="item item-input">
+            <i class="icon ion-ios-paper-outline placeholder-icon"></i>
+            <input type="text" ng-model="$root.inputs.media.music[$index].media_id" placeholder="Music URL">
+          </label>
+
+          <!-- Platform select -->
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Platform
+            </div>
+            <select ng-model="$root.inputs.media.music[$index].media_platform">
+              <option value="soundcloud">Soundcloud</option>
+              <option value="mixcloud">Mixcloud</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- iFrame -->
+      	<iframe ng-if="$root.bools.editMusic !== $index" width="100%" height="150" scrolling="no" frameborder="no" ng-src="{{$root.sce.music[$index].split('!SPL!')[0] + music.media_id + $root.sce.music[$index].split('!SPL!')[1]| trustUrl}}"></iframe>
+
+      </div>
     </div>
+
+    <!-- Videos container -->
     <div class="container-media-videos" ng-if="$root.mediaTab === 2">
-      <i ng-if="$root.bools.showVideoTutorial === true" ng-click="$root.bools.showVideoTutorial = false" class="ion-icon ion-ios-close-outline close-video-tutorial"></i>
-    	<iframe ng-repeat="video in $root.data.media.videos track by $index" width="420" height="315" ng-src="{{video.media_id}}" frameborder="0" allowfullscreen></iframe>
+      
+      <!-- Add video item -->
+      <i ng-click="$root.bools.addVideo = true;" ng-if="$root.bools.addVideo !== true" class="ion-icon control-create {{$root.settings.icons.create}} {{$root.settings.colors.primary_color}}"></i>
+
+      <div class="container-add-video-item list animate-opacity-show" ng-show="$root.bools.addVideo === true">
+
+        <!-- Video Item ID -->
+        <label class="item item-input" ng-if="$root.bools.addVideo === true;">
+          <i class="icon {{$root.settings.icons.title_edit}} placeholder-icon"></i>
+          <input type="text" ng-model="$root.inputs.addVideoId" placeholder="Video or playlist ID">
+        </label>
+
+        <!-- Type select -->
+        <label class="item item-input item-select video-type">
+          <div class="input-label">
+            Type
+          </div>
+          <select ng-model="$root.inputs.addVideoType">
+            <option value="video">Video</option>
+            <option value="playlist">Playlist</option>
+          </select>
+        </label>
+
+        <!-- Platform select -->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Platform
+          </div>
+          <select ng-model="$root.inputs.addVideoPlatform">
+            <option value="youtube">YouTube</option>
+            <option value="vimeo">Vimeo</option>
+          </select>
+        </label>
+
+        <!-- Control buttons -->
+        <i ng-click="$root.bools.addVideo = false" ng-show="$root.bools.addVideo === true" class="ion-icon control-cancel {{$root.settings.icons.cancel}} {{$root.settings.colors.primary_color}}"></i>
+        <i ng-click="$root.bools.addVideo = false;$root.postVideo();" ng-show="$root.bools.addVideo === true" class="ion-icon control-finish {{$root.settings.icons.finish}} {{$root.settings.colors.primary_color}}"></i>
+      </div>
+
+      <!--A message to display when there is no music to display-->
+      <div class="container-message" ng-if="$root.data.media.videos.length === 0">
+        <p class="{{$root.settings.colors.primary_color}}">There are no videos to show.</p>
+        <i class="ion-icon {{$root.settings.icons.subtab_3}} {{$root.settings.colors.primary_color}}"></i>
+      </div>
+
+      <div class="container-video-item animate-opacity-show" ng-repeat="video in $root.data.media.videos track by $index">
+        <i ng-if="$root.bools.showVideoTutorial === true" ng-click="$root.bools.showVideoTutorial = false" class="ion-icon ion-ios-close-outline close-video-tutorial"></i>
+
+          <!-- Control buttons -->
+          <i ng-click="$root.bools.editVideo = $index;" ng-show="$root.bools.editVideo !== $index" class="ion-icon control-create {{$root.settings.icons.create}}"></i>
+          <i ng-click="$root.bools.editVideo = -1;$root.getMedia();" ng-show="$root.bools.editVideo === $index" class="ion-icon control-cancel {{$root.settings.icons.cancel}}"></i>
+          <i ng-click="$root.bools.editVideo = -1;$root.updateVideo($index);" ng-show="$root.bools.editVideo === $index" class="ion-icon control-finish {{$root.settings.icons.finish}}"></i>
+          <i ng-click="$root.bools.editVideo = -1;$root.deleteVideo($index);" ng-show="$root.bools.editVideo === $index" class="ion-icon control-delete {{$root.settings.icons.delete}}"></i>
+
+          <div class="container-edit-video animate-opacity-show" ng-if="$root.bools.editVideo === $index;">
+            
+            <!-- Video input -->
+            <label class="item item-input">
+              <i class="icon {{$root.settings.icons.title_edit}} placeholder-icon"></i>
+              <input type="text" ng-model="$root.inputs.media.videos[$index].media_id" placeholder="Video or playlist ID">
+            </label>
+
+            <!-- Type select -->
+            <label class="item item-input item-select video-type">
+              <div class="input-label">
+                Type
+              </div>
+              <select ng-model="$root.inputs.media.videos[$index].media_type">
+                <option value="video">Video</option>
+                <option value="playlist">Playlist</option>
+              </select>
+            </label>
+
+            <!-- Platform select -->
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Platform
+              </div>
+              <select ng-model="$root.inputs.media.videos[$index].media_platform">
+                <option value="youtube">Youtube</option>
+                <option value="vimeo">Vimeo</option>
+              </select>
+            </label>
+
+          </div>
+
+          <iframe ng-if="$root.bools.editVideo !== $index" width="420" height="315" ng-src="{{$root.sce.videos[$index] + video.media_id | trustUrl}}" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
+    <br>
+    <br>
   </ion-content>
 </ion-view>

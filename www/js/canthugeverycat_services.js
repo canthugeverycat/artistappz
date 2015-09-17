@@ -12,7 +12,13 @@ angular.module('canthugeverycat.services',['ngResource'])
 	return $resource(APIurl + '/:url/', null, {
 		post: {
 			//Defining the content-type header for POST so the server can recognize the data.
-			method:'POST',	headers:{'Content-Type':'application/x-www-form-urlencoded'}
+			method:'POST',
+			headers:{'Content-Type':'application/x-www-form-urlencoded'}
+		},
+		delete: {
+			//Defining the content-type header for POST so the server can recognize the data.
+			method:'DELETE',
+			headers:{'Content-Type':'application/x-www-form-urlencoded','x-app-id':'molim'}
 		}
 	});
 })
@@ -34,6 +40,15 @@ angular.module('canthugeverycat.services',['ngResource'])
 		},
 		post: function(x) {
 			RESTCalls.post({url:x.url},x.data,
+			function(response) {
+				return response.data;
+			},
+			function (responseerr) {
+				x.error(responseerr);
+			}).$promise.then(x.callback);
+		},
+		delete: function(x) {
+			RESTCalls.delete({url:x.url},
 			function(response) {
 				return response.data;
 			},

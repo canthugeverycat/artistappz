@@ -1,30 +1,74 @@
-$light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
-$calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
-$royal:                           #886aea !default;
-$dark:                            #444 !default;
+$light:                          #fff !default;
+$stable:                         #f8f8f8 !default;
+$positive:                       #387ef5 !default;
+$calm:                           #11c1f3 !default;
+$balanced:                       #33cd5f !default;
+$energized:                      #ffc900 !default;
+$assertive:                      #ef473a !default;
+$royal:                          #886aea !default;
+$dark:                           #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
-$ionicons-font-path: "../lib/ionic/fonts" !default;
+$ionicons-font-path:"../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
 //Defining background colors for info messages
 
-.bg-light{background-color:$light;}
-.bg-stable{background-color:$stable;}
-.bg-positive{background-color:$positive;}
-.bg-calm{background-color:$calm;}
-.bg-balanced{background-color:$balanced;}
-.bg-energized{background-color:$energized;}
-.bg-assertive{background-color:$assertive;}
-.bg-royal{background-color:$royal;}
-.bg-dark{background-color:$dark;}
+.bg-light{color:$light !important;}
+.bg-stable{color:$stable !important;}
+.bg-positive{color:$positive !important;}
+.bg-calm{color:$calm !important;}
+.bg-balanced{color:$balanced !important;}
+.bg-energized{color:$energized !important;}
+.bg-assertive{color:$assertive !important;}
+.bg-royal{color:$royal !important;}
+.bg-dark{color:$dark !important;}
+
+.bg-light{background-color:$light !important;}
+.bg-stable{background-color:$stable !important;}
+.bg-positive{background-color:$positive !important;}
+.bg-calm{background-color:$calm !important;}
+.bg-balanced{background-color:$balanced !important;}
+.bg-energized{background-color:$energized !important;}
+.bg-assertive{background-color:$assertive !important;}
+.bg-royal{background-color:$royal !important;}
+.bg-dark{background-color:$dark !important;}
+
+.spinner-loader-light{stroke:$light !important;}
+.spinner-loader-stable{stroke:$stable !important;}
+.spinner-loader-positive{stroke:$positive !important;}
+.spinner-loader-calm{stroke:$calm !important;}
+.spinner-loader-balanced{stroke:$balanced !important;}
+.spinner-loader-energized{stroke:$energized !important;}
+.spinner-loader-assertive{stroke:$assertive !important;}
+.spinner-loader-royal{stroke:$royal !important;}
+.spinner-loader-dark{stroke:$dark !important;}
+
+//Defining color of tabs
+.media-subtab .col-33.light:active{ .ion-icon{color:$light;} span{color:$light;}}
+.media-subtab .col-33.stable:active{ .ion-icon{color:$stable;} span{color:$stable;}}
+.media-subtab .col-33.positive:active{ .ion-icon{color:$positive;} span{color:$positive;}}
+.media-subtab .col-33.calm:active{ .ion-icon{color:$calm;} span{color:$calm;}}
+.media-subtab .col-33.balanced:active{ .ion-icon{color:$balanced;} span{color:$balanced;}}
+.media-subtab .col-33.energized:active{ .ion-icon{color:$energized;} span{color:$energized;}}
+.media-subtab .col-33.assertive:active{ .ion-icon{color:$assertive;} span{color:$assertive;}}
+.media-subtab .col-33.royal:active{ .ion-icon{color:$royal;} span{color:$royal;}}
+.media-subtab .col-33.dark:active{ .ion-icon{color:$dark;} span{color:$dark;}}
+
+.landing-overlay{
+	background-color:$stable;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    position:absolute;
+    z-index:9999999;
+
+    transition:opacity 0.5s ease;
+    -webkit-transition:opacity 0.5s ease;
+}
 
 
 //Info message that appears upon errors or successful operations
@@ -48,7 +92,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	border:1px solid rgba(0,0,0,0.1);
 
 	.info-title{
-		white-space: nowrap;
+		white-space:nowrap;
 		opacity:1;
 	}
 }
@@ -86,7 +130,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	text-align:center;
 	
 	p{
-		color:$positive;
 		font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
 		font-size:14px;
 		font-stretch:normal;
@@ -97,29 +140,22 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 	i{
 		font-size:34px;
-		color:$positive;
 	}
 }
 
 
 .media-subtab{
 	border-top:1px solid #b2b2b2;
-	background-color:rgb(248, 248, 248);
+	background-color:$stable;
 	position:absolute;
 	bottom:48px;
-	height:45px;
-	z-index: 999;
+	height:50px;
+	z-index:999;
 
 	.col-33{
 		text-align:center;
 		cursor:pointer;
 		text-decoration:none;
-
-		&:active{
-			color:$positive;
-
-			i,span{color:$positive}
-		}
 
 		i{
 			font-size:20px;
@@ -142,6 +178,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .tab-nav.tabs{
 	z-index:999999999;
+
+	.tab-item-active{
+		opacity:0.7 !important;
+	}
 }
 
 ion-content{
@@ -162,25 +202,23 @@ ion-content{
 	margin-left:-40%;
 	box-shadow:1px 1px 10px $dark;
 
-	.ion-ios-compose-outline{
+	.control-create{
 		position:absolute;
 		right:15px;
 		top:10px;
 		font-size:24px;
-		color:$positive;
 	}
 
-	.ion-ios-close-outline,.ion-ios-checkmark-outline{
+	.control-cancel,.control-finish,.control-edit{
 		transition:all 0.5s;
 		position:absolute;
 		top:10px;
 		right:15px;
 		font-size:24px;
-		color:$positive;
 		z-index:999;
 	}
 
-	.ion-ios-checkmark-outline{
+	.control-finish{
 		right:50px;
 	}
 
@@ -204,7 +242,6 @@ ion-content{
 		margin:20px;
 		margin-left:30px;
 		margin-right:30px;
-		color:$dark;
 	}
 }
 
@@ -216,6 +253,7 @@ ion-content.content-landing{
 	background-size:cover;
 	background-position:center;
 	.icon-about{
+		background-color:transparent !important;
 		position:absolute;
 		right:20px;
 		top:10px;
@@ -273,13 +311,11 @@ ion-content.content-events{
 			margin-top:10px;
 			text-align:center;
 			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
-			font-size
-			:20px;
+			font-size:20px;
 			font-stretch:normal;
 			font-style:normal;
 			font-variant:normal;
 			font-weight:normal;
-			color:rgb(68, 68, 68);
 		}
 		.col-50.featured-left{
 			padding-left:10px;
@@ -380,7 +416,6 @@ ion-nav-bar{
 			font-variant:normal;
 			font-weight:normal;
 			text-decoration:none;
-			color:$positive;
 
 			i{
 				margin-right:10px;
@@ -411,9 +446,8 @@ ion-nav-bar{
 				margin-left:10px;
 				margin-right:10px;
 				font-size:24px;
-				color:$positive;
 
-				animation: locationIcon 2s infinite;
+				animation:locationIcon 2s infinite;
 			}
 		}
 
@@ -426,25 +460,13 @@ ion-nav-bar{
 
 .content-social{
 
-	.ion-ios-compose-outline{
-		position:absolute;
-		right:15px;
-		font-size:24px;
-		color:$positive;
-	}
-
-	.ion-ios-close-outline,.ion-ios-checkmark-outline{
-		top:-30px;
+	.ion-icon{
+		top:40px;
 		transition:all 0.5s;
 		position:absolute;
 		right:15px;
 		font-size:24px;
-		color:$positive;
 		z-index:999;
-	}
-
-	.ion-ios-checkmark-outline{
-		right:50px;
 	}
 
 	h2 {
@@ -466,8 +488,12 @@ ion-nav-bar{
 
 		.ion-icon{
 			margin:20px;
-			color:$positive;
 			font-size:30px;
+			top:0px;
+			position:relative;
+			right:0px;
+			font-size:24px;
+			z-index:999;
 		}
 	}
 
@@ -478,6 +504,10 @@ ion-nav-bar{
 		i {
 			font-size:14px;
 		}
+
+		i.ion-map{
+			color:lighten($dark,30%);
+		}
 	}
 
 	.row{
@@ -485,6 +515,12 @@ ion-nav-bar{
 			text-align:center;
 			i{
 				font-size:24px;
+				top:0px;
+				transition:none;
+				position:relative;
+				right:0;
+				font-size:24px;
+				z-index:999;
 			}
 		}
 	}
@@ -494,27 +530,63 @@ ion-nav-bar{
 
 .content-news{
 
+	.control-create{
+		position:absolute;
+		right:15px;
+		top:-40px;
+		font-size:24px;
+	}
+
+	.control-cancel,.control-finish,.control-delete,.control-edit{
+		transition:all 0.5s;
+		position:absolute;
+		top:13px;
+		right:15px;
+		font-size:24px;
+		z-index:999;
+	}
+
+	.control-finish{
+		right:50px;
+	}
+
+	.container-add-news-item{
+		.item-input{
+			input{
+
+			}
+		}
+		textarea{
+			padding:10px;
+			width:100%;
+			padding-left:20px;
+			height:150px;
+		}
+	}
+
 	.news-card{
-		.ion-ios-compose-outline{
+		.control-create{
 			position:absolute;
 			right:15px;
 			top:10px;
 			font-size:24px;
-			color:$positive;
 		}
 
-		.ion-ios-close-outline,.ion-ios-checkmark-outline{
-			transition:all 0.5s;
+		.ion-icon{
 			position:absolute;
 			top:10px;
 			right:15px;
 			font-size:24px;
-			color:$positive;
 			z-index:999;
 		}
 
-		.ion-ios-checkmark-outline{
+		.ion-icon:nth-child(3){
 			right:50px;
+		}
+
+		.ion-icon:nth-child(4){
+			right:85px;
+			color:$assertive;
 		}
 
 		textarea{
@@ -551,23 +623,419 @@ ion-nav-bar{
 			}
 		}
 	}
+
+	.news-card-first{
+		margin-top:60px;
+	}
 }
 
 //MEDIA
 
 .content-media{
 	text-align:center;
-	.video-tutorial-button{
-		color:$positive;
-		font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
-		font-size:14px;
-		font-stretch:normal;
-		font-style:normal;
-		font-variant:normal;
-		font-weight:normal;
-		margin-top:20px;
-		display:inline-block;
+
+	.container-media-music{
+
+		.control-create{
+			position:absolute;
+			right:15px;
+			top:-25px !important;
+			font-size:24px;
+		}
+
+		.ion-icon{
+			position:absolute;
+			top:13px;
+			right:15px;
+			font-size:24px;
+			z-index:999;
+		}
+
+		.ion-icon:nth-child(2){
+			right:50px;
+		}
+
+		.container-add-music-item{
+			.item-select{
+				.input-label{
+					color:rgba(17, 17, 17, 0.4);
+					margin-left:-36px !important;
+					font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+					font-size:14px;
+					font-stretch:normal;
+					font-style:normal;
+					font-variant:normal;
+					font-weight:normal;
+					letter-spacing:normal;
+					line-height:16px;
+				}
+			}
+		}
+
+		.container-music-item{
+			margin-top:40px;
+			position:relative;
+
+			.control-create{
+				position:absolute;
+				right:15px;
+				top:10px;
+				font-size:24px;
+			}
+
+			.control-cancel,.control-finish,.control-delete{
+				transition:all 0.5s;
+				position:absolute;
+				top:13px;
+				right:15px;
+				font-size:24px;
+				z-index:999;
+				background-color:white;
+			}
+
+			.ion-icon:nth-child(2){
+				right:50px;
+			}
+
+			.ion-icon:nth-child(3){
+				right:85px;
+				color:$assertive;
+			}
+
+			iframe{
+				margin-top:40px;
+			}
+
+			.item-select{
+				.input-label{
+					color:rgba(17, 17, 17, 0.4);
+					margin-left:-36px !important;
+					font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+					font-size:14px;
+					font-stretch:normal;
+					font-style:normal;
+					font-variant:normal;
+					font-weight:normal;
+					letter-spacing:normal;
+					line-height:16px;
+				}
+			}
+		}
 	}
+
+	.container-media-videos{
+		.video-tutorial-button{
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size:14px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+			margin-top:20px;
+			display:inline-block;
+		}
+
+		.control-create{
+			position:absolute;
+			right:15px;
+			top:-67px;
+			font-size:24px;
+		}
+
+		.control-cancel,.control-finish,.control-delete{
+			transition:all 0.5s;
+			position:absolute;
+			top:13px;
+			right:15px;
+			font-size:24px;
+			z-index:999;
+		}
+
+		.control-finish{
+			right:50px;
+		}
+
+		.container-add-video-item{
+			.video-type{
+				margin-left:-15px !important;
+			}
+			.item-select{
+				.input-label{
+					color:rgba(17, 17, 17, 0.4);
+					margin-left:-36px !important;
+					font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+					font-size:14px;
+					font-stretch:normal;
+					font-style:normal;
+					font-variant:normal;
+					font-weight:normal;
+					letter-spacing:normal;
+					line-height:16px;
+				}
+			}
+		}
+
+		.container-video-item{
+			margin-top:40px;
+			position:relative;
+
+			.container-edit-video{
+				.item-input{
+					margin-bottom:0px;
+				}
+			}
+
+			.control-create{
+				position:absolute;
+				right:15px;
+				top:10px;
+				font-size:24px;
+			}
+
+			.control-cancel,.control-finish,.control-delete{
+				transition:all 0.5s;
+				position:absolute;
+				top:10px;
+				right:15px;
+				font-size:24px;
+				z-index:999;
+			}
+
+			.control-finish{
+				right:50px;
+			}
+
+			.control-delete{
+				right:85px;
+			}
+
+			.item-input{
+				margin-bottom:-40px;
+			}
+
+			iframe{
+				margin-top:40px;
+				width:100%;
+			}
+
+			.item-select{
+				.input-label{
+					color:rgba(17, 17, 17, 0.4);
+					margin-left:-36px !important;
+					font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+					font-size:14px;
+					font-stretch:normal;
+					font-style:normal;
+					font-variant:normal;
+					font-weight:normal;
+					letter-spacing:normal;
+					line-height:16px;
+				}
+			}
+		}
+	}
+}
+
+//SETTINGS screen
+.content-settings{
+	.container-color-boxes{
+		position:absolute;
+		z-index:999999;
+		top:-20px;
+		bottom:0;
+		left:0;
+		right:0;
+		background-color:rgba(0,0,0,0.7);
+
+		h2{
+			margin-top:20px;
+			text-align:center;
+			color:$stable;
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size:16px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+		}
+
+		.underlay-color-boxes{
+			width:100%;
+			padding-left:70px;
+			padding-right:70px;
+			padding-top:10px;
+			padding-bottom:10px;
+			text-align:center;
+			.color-box{
+				display:inline-block;
+				height:40px;
+				width:40px;
+				margin:5px;
+				box-shadow:1px 1px 1px rgba(0,0,0,0.3);
+
+				transition:all 0.1s;
+			}
+
+			.color-box.active{
+				margin:0;
+				height:50px;
+				width:50px;
+				box-shadow:0 0 10px rgba(255,255,255,0.5);
+			}
+		}
+
+		.container-close{
+			display:block;
+			text-align:center;
+			i.control-icon{
+				background-color:transparent;
+				position:relative;
+				display:inline-block;
+				top:10px;
+				right:0;
+				margin-left:15px;
+				margin-right:15px;
+			}
+		}
+	}
+
+	.container-icons{
+		position:absolute;
+		z-index:999999;
+		top:-20px;
+		left:0;
+		right:0;
+		padding-bottom:30px;
+		background-color:rgba(255,255,255,0.7);
+
+		h2{
+			margin-top:20px;
+			text-align:center;
+			color:$dark;
+			font-family:'Helvetica Neue', Roboto, 'Segoe UI', sans-serif;
+			font-size:16px;
+			font-stretch:normal;
+			font-style:normal;
+			font-variant:normal;
+			font-weight:normal;
+		}
+
+		.underlay-icons{
+			width:100%;
+			padding-left:70px;
+			padding-right:70px;
+			padding-top:30px;
+			padding-bottom:10px;
+			text-align:center;
+			.pick-icon{
+				background-color:rgba(255,255,255,0.001) !important;
+				display:inline-block;
+				font-size:34px !important;
+				height:40px;
+				width:40px;
+				margin:5px;
+				position:relative !important;
+				transition:all 0.1s !important;
+				top:0;
+				right:0;
+			}
+
+			.pick-icon.active{
+				margin:0;
+				width:50px;
+				height:50px;
+				font-size:40px !important;
+				color:$positive;
+			}
+		}
+
+		.container-close{
+			display:block;
+			text-align:center;
+			position:relative;
+			right:0;
+			margin-bottom:10px;
+			top:7px;
+			i.control-icon{
+				background-color:transparent;
+				position:relative;
+				display:inline-block;
+				top:10px;
+				right:0;
+				margin-left:10px;
+				margin-right:15px;
+			}
+		}
+	}
+
+	.list.card{
+		.control-cancel,.control-delete,.control-finish{
+			top:0;
+		}
+		.item{
+			h2{
+				i{
+					margin-right:5px;
+				}
+			}
+		}
+
+		.item-image{
+			.item.range{
+				p{
+					margin-left:13px;
+					margin-top:3px;
+				}
+				height:50px;
+				padding:0;
+				.primary-color-box{
+					margin:5px;
+					height:40px;
+					width:40px;
+					display:inline-block;
+					position:absolute;
+					right:0;
+					box-shadow:1px 1px 1px rgba(0,0,0,0.3);
+				}
+
+				.primary-icon{
+					margin:5px;
+					height:40px;
+					width:40px;
+					display:inline-block;
+					position:absolute;
+					font-size:40px;
+					right:0;
+				}
+			}
+		}
+
+		.buttons-container{
+			position:relative;
+			height:40px;
+			display:inline-block;
+			width:100%;
+			.ion-ios-upload-outline{
+				position:absolute;
+				top:13px;
+				right:15px;
+				font-size:24px;
+			}
+			.ion-ios-undo-outline{
+				position:absolute;
+				top:13px;
+				left:15px;
+				font-size:24px;
+			}
+		}
+	}
+}
+
+//Toast button
+.loading{
+    margin-bottom:-120% !important;
+    padding-top:7px !important;
+    padding-bottom:7px !important;
 }
 
 
@@ -579,19 +1047,19 @@ ion-nav-bar{
 //Animation for subtab
 .animate-subtab-show.ng-hide-add.ng-hide-add-active,
 .animate-subtab-show.ng-hide-remove.ng-hide-remove-active {
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition:all 0.3s;
+  transition:all 0.3s;
 }
 
 .animate-subtab-show.ng-hide {
-  bottom: 0 !important;
+  bottom:0 !important;
 }
 
 //Animation for about card
 .animate-about-show.ng-hide-add.ng-hide-add-active,
 .animate-about-show.ng-hide-remove.ng-hide-remove-active {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition:all 0.5s;
+  transition:all 0.5s;
 }
 
 .animate-about-show.ng-hide {
@@ -601,19 +1069,30 @@ ion-nav-bar{
 //Animation for about card
 .animate-video-tutorial-show.ng-hide-add.ng-hide-add-active,
 .animate-video-tutorial-show.ng-hide-remove.ng-hide-remove-active {
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
+  -webkit-transition:all 0.5s;
+  transition:all 0.5s;
 }
 
 .animate-video-tutorial-show.ng-hide {
   opacity:0;
 }
 
+//Animation for about card
+.animate-opacity-show.ng-hide-add.ng-hide-add-active,
+.animate-opacity-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition:all 0.5s;
+  transition:all 0.5s;
+}
+
+.animate-opacity-show.ng-hide {
+  opacity:0;
+}
+
 //Location icon animation
 @keyframes locationIcon {
     100% {
-    	-ms-transform: rotate(360deg); /* IE 9 */
-	    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
-	    transform: rotate(360deg);
+    	-ms-transform:rotate(360deg); /* IE 9 */
+	    -webkit-transform:rotate(360deg); /* Chrome, Safari, Opera */
+	    transform:rotate(360deg);
     }
 }

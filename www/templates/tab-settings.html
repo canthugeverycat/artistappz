@@ -1,0 +1,285 @@
+<ion-view view-title="Settings">
+	<ion-nav-bar class="{{$root.settings.colors.text_color}}">
+		<ion-nav-buttons side="right">
+		  <!-- A spinner to show until the data arrives -->
+		  <ion-spinner icon="lines" class="spinner-loader" ng-if="$root.loaders.settings === true"></ion-spinner>
+		</ion-nav-buttons>
+	</ion-nav-bar>
+	<ion-content class="content-settings">
+		<!-- A container for the icon picker -->
+		<div class="container-icons animate-opacity-show" ng-show="$root.bools.icons === true" ng-click="$root.bools.icons = false;">
+			<h2>Click to pick an icon for</h2>
+			<div class="underlay-icons">
+			  	<i class="ion-icons pick-icon {{icon}}" ng-repeat="icon in $root.ionicons track by $index" ng-class="{'active':$root.bools.activePickIcon === $index}" ng-click="$root.bools.activePickIcon = $index;$root.updateIcon();"></i>
+			</div>
+		 </div>
+
+		<!-- A container for the color picker -->
+		<div class="container-color-boxes animate-opacity-show" ng-show="$root.bools.colorBoxes === true" ng-click="$root.bools.colorBoxes = false;">
+			<h2>Click to pick a {{$root.bools.activeColorType === 0 ? 'primary color':null;}}{{$root.bools.activeColorType === 1 ? 'secondary color':null;}}{{$root.bools.activeColorType === 2 ? 'text color':null;}}</h2>
+			<div class="underlay-color-boxes">
+			  	<div class="color-box bg-positive" ng-class="{'active':$root.bools.activeColor === 'positive'}" ng-click="$root.bools.activeColor = 'positive';$root.updateColor()"></div>
+			  	<div class="color-box bg-calm" ng-class="{'active':$root.bools.activeColor === 'calm'}" ng-click="$root.bools.activeColor = 'calm';$root.updateColor()"></div>
+			  	<div class="color-box bg-balanced" ng-class="{'active':$root.bools.activeColor === 'balanced'}" ng-click="$root.bools.activeColor = 'balanced';$root.updateColor()"></div>
+			  	<div class="color-box bg-energized" ng-class="{'active':$root.bools.activeColor === 'energized'}" ng-click="$root.bools.activeColor = 'energized';$root.updateColor()"></div>
+			  	<div class="color-box bg-assertive" ng-class="{'active':$root.bools.activeColor === 'assertive'}" ng-click="$root.bools.activeColor = 'assertive';$root.updateColor()"></div>
+			  	<div class="color-box bg-royal" ng-class="{'active':$root.bools.activeColor === 'royal'}" ng-click="$root.bools.activeColor = 'royal';$root.updateColor()"></div>
+			  	<div class="color-box bg-dark" ng-if="$root.bools.activeColorType === 2" ng-class="{'active':$root.bools.activeColor === 'dark'}" ng-click="$root.bools.activeColor = 'dark';$root.updateColor()"></div>
+			</div>
+		</div>
+
+		<!-- List of colors -->
+		<div class="list card">
+		  <div class="item">
+		    <h2><i class="icon ion-ios-color-filter-outline"></i>Color Theme</h2>
+		    <p>Click on a color to pick it</p>
+		  </div>
+
+		  <!-- Color list -->
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.colorBoxes = true;$root.setColor(0)">
+			  <p>Primary color</p>
+			  <i class="color-represent primary-color-box bg-{{$root.settings.colors.primary_color}}"></i>
+			</div>
+			<div class="item range" ng-click="$root.bools.colorBoxes = true;$root.setColor(2)">
+			  <p>Text color</p>
+			  <i class="color-represent primary-color-box bg-{{$root.settings.colors.text_color}}"></i>
+			</div>
+		  </div>
+
+		  <!-- Save button -->
+		  <div class="buttons-container">
+		    <i class="ion-icon ion-ios-upload-outline {{$root.settings.colors.primary_color}}" ng-click="$root.updateSettings()"></i>
+		    <i class="ion-icon ion-ios-undo-outline {{$root.settings.colors.primary_color}}" ng-click="$root.getSettings()"></i>
+		  </div>
+		</div>
+
+		<!-- List of icons -->
+		<div class="list card">
+		  <div class="item">
+		    <h2><i class="icon ion-ios-ionic-outline"></i>Icon theme</h2>
+		    <p>Click on an icon to pick it</p>
+		  </div>
+
+		  <!-- Icons list -->
+
+		  <!-- Tabs icons -->
+		  <div class="item item-divider">
+		    Tabs icons
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(0)">
+			  <p>Tab icon 1</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.tab_1}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(1)">
+			  <p>Tab icon 2</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.tab_2}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(2)">
+			  <p>Tab icon 3</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.tab_3}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(3)">
+			  <p>Tab icon 4</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.tab_4}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image" style="padding-left:10px;">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(4)">
+			  <p>Subtab icon 1</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.subtab_1}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image" style="padding-left:10px;">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(5)">
+			  <p>Subtab icon 2</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.subtab_2}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image" style="padding-left:10px;">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(6)">
+			  <p>Subtab icon 3</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.subtab_3}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(7)">
+			  <p>Tab icon 5</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.tab_5}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(8)">
+			  <p>Tab icon 6</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.tab_6}}"></i>
+			</div>
+		  </div>
+
+		  <!-- Control icons -->
+		  <div class="item item-divider">
+		    Control icons
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(29)">
+			  <p>Create icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.create}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(9)">
+			  <p>Edit icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.edit}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(10)">
+			  <p>Cancel Icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.cancel}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(11)">
+			  <p>Delete icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.delete}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(12)">
+			  <p>Finish icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.finish}}"></i>
+			</div>
+		  </div>
+
+		  <!-- Misc icons -->
+		  <div class="item item-divider">
+		    Misc icons
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(13)">
+			  <p>About icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.about}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(14)">
+			  <p>Title edit icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.title_edit}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(30)">
+			  <p>App name icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.app_name}}"></i>
+			</div>
+		  </div>
+
+		  <!-- Major icons -->
+		  <div class="item item-divider">
+		    Major icons
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(15)">
+			  <p>Date icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.date}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(16)">
+			  <p>Time icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.time}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(17)">
+			  <p>City icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.city}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(18)">
+			  <p>Venue icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.venue}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(19)">
+			  <p>Country icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.country}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(20)">
+			  <p>State icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.state}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(21)">
+			  <p>ZIP code icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.zip}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(22)">
+			  <p>Phone icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.phone}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(23)">
+			  <p>Website icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.website}}"></i>
+			</div>
+		  </div>
+
+		  <!-- Social icons -->
+		  <div class="item item-divider">
+		    Social icons
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(24)">
+			  <p>Facebook icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.facebook}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(25)">
+			  <p>Twitter icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.twitter}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(26)">
+			  <p>Instagram icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.instagram}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(27)">
+			  <p>Youtube icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.youtube}}"></i>
+			</div>
+		  </div>
+		  <div class="item item-image">
+		  	<div class="item range" ng-click="$root.bools.icons = true;$root.setIcon(28)">
+			  <p>Email icon</p>
+			  <i class="ion-icon primary-icon {{$root.settings.icons.email}}"></i>
+			</div>
+		  </div>
+
+		  
+		  <!-- Save button -->
+		  <div class="buttons-container">
+		    <i class="ion-icon ion-ios-upload-outline {{$root.settings.colors.primary_color}}" ng-click="$root.updateIconSettings()"></i>
+		    <i class="ion-icon ion-ios-undo-outline {{$root.settings.colors.primary_color}}" ng-click="$root.getSettings()"></i>
+		  </div>
+		</div>
+	</ion-content>
+</ion-view>

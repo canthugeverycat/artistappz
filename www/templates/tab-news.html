@@ -1,44 +1,84 @@
 <ion-view view-title="News">
-  <ion-content class="content-news">
-  	<!--A message to display when there are no news to display-->
-  	<div class="container-message" ng-if="$root.data.news.length === 0">
-  		<p>There are no news to show.</p>
-  		<i class="ion-icon ion-sad-outline"></i>
-  	</div>
+  <ion-nav-bar class="{{$root.settings.colors.text_color}} ">
+  	<ion-nav-buttons side="right">
+  		<!-- A spinner to show until the data arrives -->
+  		<ion-spinner icon="lines" class="spinner-loader" ng-if="$root.loaders.news === true"></ion-spinner>
+  	</ion-nav-buttons>
+  </ion-nav-bar>
 
-  	<div class="list card news-card" ng-repeat="news in $root.data.news track by $index">
-  		<!-- Control buttons -->
-  		<i ng-click="$root.bools.editNews = true" ng-show="$root.bools.editNews !== true" class="ion-icon ion-ios-compose-outline"></i>
-	    <i ng-click="$root.bools.editNews = false;$root.getNews()" ng-show="$root.bools.editNews === true" class="ion-icon ion-ios-close-outline"></i>
-	    <i ng-click="$root.bools.editNews = false;$root.postNews()" ng-show="$root.bools.editNews === true" class="ion-icon ion-ios-checkmark-outline"></i>
+  <ion-content class="content-news ">
+  	<!-- Add news item -->
+  	<i ng-click="$root.bools.addNews = true;" ng-if="$root.bools.addNews !== true" class="ion-icon {{$root.settings.icons.create}} {{$root.settings.colors.primary_color}}"></i>
 
-		<h2 ng-if="$root.bools.editNews !== true" ng-bind="news.title"></h2>
+  	<div class="container-add-news-item list animate-opacity-show" ng-show="$root.bools.addNews === true">
 
-		<!-- Title input -->
-		<label class="item item-input" ng-if="$root.bools.editNews === true">
-			<i class="icon ion-ios-paper-outline placeholder-icon"></i>
-			<input type="text" ng-model="$root.inputs.newsTitle" placeholder="News title">
+    	<!-- Title input -->
+		<label class="item item-input" ng-if="$root.bools.addNews === true">
+			<i class="icon {{$root.settings.icons.title_edit}} placeholder-icon"></i>
+			<input type="text" ng-model="$root.inputs.addNewsTitle" placeholder="News title">
 		</label>
 
-		<p ng-if="$root.bools.editNews !== true" ng-bind="news.body"></p>
+		<!-- Body input -->
+    	<textarea ng-if="$root.bools.addNews === true" placeholder="Description" ng-model="$root.inputs.addNewsBody"></textarea>
+
+    	<!-- URL input -->
+		<label class="item item-input" ng-if="$root.bools.addNews === true">
+			<i class="icon {{$root.settings.icons.website}} placeholder-icon"></i>
+			<input type="text" ng-model="$root.inputs.addNewsUrl" placeholder="News URL">
+		</label>
+
+		<!-- Control buttons -->
+		<i ng-click="$root.bools.addNews = false" ng-show="$root.bools.addNews === true" class="ion-icon control-cancel {{$root.settings.icons.cancel}} {{$root.settings.colors.primary_color}}"></i>
+		<i ng-click="$root.bools.addNews = false;$root.postNews();" ng-show="$root.bools.addNews === true" class="ion-icon control-finish {{$root.settings.icons.finish}} {{$root.settings.colors.primary_color}}"></i>
+	</div>
+
+	<!--A message to display when there are no news to display-->
+  	<div class="container-message" ng-if="$root.data.news.length === 0">
+  		<p class="{{$root.settings.colors.primary_color}}">There are no news to show.</p>
+  		<i class="ion-icon {{$root.settings.icons.tab_3}} {{$root.settings.colors.primary_color}}"></i>
+  	</div>
+
+  	<div class="list card news-card " ng-class="{'news-card-first':$index === 0}" ng-repeat="news in $root.data.news track by $index">
+
+  		<!-- Control buttons -->
+  		<i ng-click="$root.bools.editNews = $index" ng-show="$root.bools.editNews !== $index" class="ion-icon {{$root.settings.icons.edit}} {{$root.settings.colors.primary_color}}"></i>
+	    <i ng-click="$root.bools.editNews = -1;" ng-if="$root.bools.editNews === $index" class="ion-icon {{$root.settings.icons.cancel}} {{$root.settings.colors.primary_color}}"></i>
+	    <i ng-click="$root.bools.editNews = -1;$root.updateNews($index)" ng-if="$root.bools.editNews === $index" class="ion-icon {{$root.settings.icons.finish}} {{$root.settings.colors.primary_color}}"></i>
+	    <i ng-click="$root.bools.editNews = -1;$root.deleteNews($index);" ng-if="$root.bools.editNews === $index" class="ion-icon {{$root.settings.icons.delete}}"></i>
+
+	    <!-- Title -->
+		<h2 class="{{$root.settings.colors.text_color}}" ng-if="$root.bools.editNews !== $index" ng-bind="news.title"></h2>
+
+		<!-- Title input -->
+		<label class="item item-input" ng-if="$root.bools.editNews === $index">
+			<i class="icon {{$root.settings.icons.title_edit}} placeholder-icon"></i>
+			<input type="text" ng-model="$root.inputs.news[$index].title" placeholder="News title">
+		</label>
+
+		<!-- Body -->
+		<p class="{{$root.settings.colors.text_color}}" ng-if="$root.bools.editNews !== $index" ng-bind="news.body"></p>
 
 		<!-- Input body -->
-    	<textarea ng-if="$root.bools.editNews === true" placeholder="Description" ng-model="$root.inputs.aboutNews"></textarea>
+    	<textarea ng-if="$root.bools.editNews === $index" placeholder="Description" ng-model="$root.inputs.news[$index].body"></textarea>
 
-		<div ng-if="$root.bools.editNews !== true" class="item item-image">
+    	<!-- News Image -->
+		<div ng-if="$root.bools.editNews !== $index" class="item item-image">
 			<img src="img/background.jpg">
 		</div>
 
-		<a ng-if="$root.bools.editNews !== true" class="item item-icon-left positive icon-url" ng-click="$root.openLink(news.url)">
-			<i class="icon ion-ios-world-outline"></i>
+		<!-- Url -->
+		<a ng-if="$root.bools.editNews !== $index" class="item item-icon-left positive icon-url {{$root.settings.colors.text_color}} " ng-click="$root.openLink(news.url)">
+			<i class="icon {{$root.settings.icons.website}}"></i>
 			{{news.url}}
 		</a>
 
-		<!-- Title input -->
-		<label class="item item-input" ng-if="$root.bools.editNews === true">
-			<i class="icon ion-ios-world-outline placeholder-icon"></i>
-			<input type="text" ng-model="$root.inputs.newsUrl" placeholder="News url">
+		<!-- Input URL -->
+		<label class="item item-input" ng-if="$root.bools.editNews === $index">
+			<i class="icon {{$root.settings.icons.website}} placeholder-icon"></i>
+			<input type="text" ng-model="$root.inputs.news[$index].url" placeholder="News URL">
 		</label>
 	</div>
+
+	<br><br><br>
   </ion-content>
 </ion-view>

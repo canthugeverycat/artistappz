@@ -1,35 +1,35 @@
 <ion-view view-title="Events">
-	<ion-nav-bar>
+	<ion-nav-bar class="{{$root.settings.colors.text_color}}">
 		<ion-nav-buttons side="right">
 			<!-- A spinner to show until the data arrives -->
-			<ion-spinner icon="lines" class="spinner-positive" ng-if="$root.loaders.events === true"></ion-spinner>
+			<ion-spinner icon="lines" class="spinner-loader" ng-if="$root.loaders.events === true"></ion-spinner>
 		</ion-nav-buttons>
 	</ion-nav-bar>
 
   	<ion-content class="content-events">
 	  	<!--A message to display when there are no events-->
 	  	<div class="container-message" ng-if="$root.data.events.length === 0">
-	  		<p>There are no upcoming events right now.</p>
-	  		<i class="ion-icon ion-sad-outline"></i>
+	  		<p class="{{$root.settings.colors.primary_color}}">There are no upcoming events right now.</p>
+	  		<i class="ion-icon {{$root.settings.icons.tab_2}} {{$root.settings.colors.primary_color}}"></i>
 	  	</div>
 
 	  	<div class="list card event-card" ng-repeat="event in $root.data.events track by $index">
-			<h2>{{event.title}}</h2>
+			<h2 class="{{$root.settings.colors.text_color}}">{{event.title}}</h2>
 
 			<div class="row">
-		    	<div class="col-50 featured-left"><i class="ion-icon ion-ios-calendar-outline"></i>{{event.date}}</div>
-		    	<div class="col-50 featured-right">{{event.time}}<i class="ion-icon ion-ios-clock-outline"></i></div>
+		    	<div class="col-50 featured-left {{$root.settings.colors.text_color}}"><i class="ion-icon {{$root.settings.icons.date}}"></i>{{event.date}}</div>
+		    	<div class="col-50 featured-right {{$root.settings.colors.text_color}}">{{event.time}}<i class="ion-icon {{$root.settings.icons.time}}"></i></div>
 	    	</div>
 	    	<div class="row">
-		    	<div class="col-50 featured-left"><i class="ion-icon ion-ios-navigate-outline"></i>{{event.city}}</div>
-		    	<div class="col-50 featured-right">{{event.venue_name}}<i class="ion-icon ion-ios-location-outline"></i></div>
+		    	<div class="col-50 featured-left {{$root.settings.colors.text_color}}"><i class="ion-icon {{$root.settings.icons.city}}"></i>{{event.city}}</div>
+		    	<div class="col-50 featured-right {{$root.settings.colors.text_color}}">{{event.venue_name}}<i class="ion-icon {{$root.settings.icons.venue}}"></i></div>
 	    	</div>
 
 			<div class="item item-image">
 				<img src="img/background.jpg">
 			</div>
 
-			<a class="item item-icon-left assertive icon-read-more" ng-click="$root.getEventDetails(event)">
+			<a class="item item-icon-left icon-read-more {{$root.settings.colors.primary_color}}" ng-click="$root.getEventDetails(event)">
 				<i class="icon ion-ios-more"></i>
 			</a>
 		</div>

@@ -1,50 +1,51 @@
 <ion-view view-title="Social">
-	<ion-nav-bar>
+	<ion-nav-bar class="{{$root.settings.colors.text_color}}">
 		<ion-nav-buttons side="right">
 		  <!-- A spinner to show until the data arrives -->
-		  <ion-spinner icon="lines" class="spinner-positive" ng-if="$root.loaders.social === true"></ion-spinner>
+		  <ion-spinner icon="lines" class="spinner-loader" ng-if="$root.loaders.social === true"></ion-spinner>
 		</ion-nav-buttons>
 	</ion-nav-bar>
 
-	<ion-content class="content-social">
+	<ion-content class="content-social ">
+		<br><br>
 		
 		<!-- Control buttons -->
-		<i ng-click="$root.bools.editSocial = true" ng-show="$root.bools.editSocial !== true" class="ion-icon ion-ios-compose-outline"></i>
-		<i ng-click="$root.bools.editSocial = false;$root.getSocial()" ng-show="$root.bools.editSocial === true" class="ion-icon ion-ios-close-outline"></i>
-		<i ng-click="$root.bools.editSocial = false;$root.postSocial()" ng-show="$root.bools.editSocial === true" class="ion-icon ion-ios-checkmark-outline"></i>
+		<i ng-click="$root.bools.editSocial = true" ng-show="$root.bools.editSocial !== true" class="ion-icon {{$root.settings.icons.edit}} {{$root.settings.colors.primary_color}} "></i>
+		<i ng-click="$root.bools.editSocial = false;$root.getSocial()" ng-show="$root.bools.editSocial === true" class="ion-icon {{$root.settings.icons.cancel}} {{$root.settings.colors.primary_color}}"></i>
+		<i ng-click="$root.bools.editSocial = false;$root.updateSocial()" ng-show="$root.bools.editSocial === true" class="ion-icon {{$root.settings.icons.finish}} {{$root.settings.colors.primary_color}}" style="right:50px;"></i>
 
 
 		<!-- App name -->
-		<h2 ng-if="$root.bools.editSocial !== true">Artistappz</h2>
+		<h2 ng-if="$root.bools.editSocial !== true" class="{{$root.settings.colors.text_color}}">Artistappz</h2>
 
 		<!-- App name input -->
 		<label class="item item-input" ng-if="$root.bools.editSocial === true" style="margin-top:40px;">
-		  <i class="icon ion-iphone placeholder-icon"></i>
+		  <i class="icon {{$root.settings.icons.app_name}} placeholder-icon"></i>
 		  <input type="text" ng-model="$root.inputs.socialName" placeholder="App name">
 		</label>
 
 		<div class="social-container">
 			<!-- Social buttons -->
-		    <a ng-if="$root.bools.editSocial !== true" ng-click="$root.openLink($root.data.contact.social.facebook)" class="ion-icon ion-social-facebook-outline"></a>
-		    <a ng-if="$root.bools.editSocial !== true" ng-click="$root.openLink($root.data.contact.social.twitter)" class="ion-icon ion-social-twitter-outline"></a>
-		    <a ng-if="$root.bools.editSocial !== true" ng-click="$root.openLink($root.data.contact.social.instagram)" class="ion-icon ion-social-instagram-outline"></a>
-		    <a ng-if="$root.bools.editSocial !== true" ng-click="$root.openLink($root.data.contact.social.youtube)" class="ion-icon ion-social-youtube-outline"></a>
+		    <a ng-if="$root.bools.editSocial !== true" ng-click="$root.openLink($root.data.contact.social.facebook)" class="ion-icon {{$root.settings.icons.facebook}} {{$root.settings.colors.primary_color}}"></a>
+		    <a ng-if="$root.bools.editSocial !== true" ng-click="$root.openLink($root.data.contact.social.twitter)" class="ion-icon {{$root.settings.icons.twitter}} {{$root.settings.colors.primary_color}}"></a>
+		    <a ng-if="$root.bools.editSocial !== true" ng-click="$root.openLink($root.data.contact.social.instagram)" class="ion-icon {{$root.settings.icons.instagram}} {{$root.settings.colors.primary_color}}"></a>
+		    <a ng-if="$root.bools.editSocial !== true" ng-click="$root.openLink($root.data.contact.social.youtube)" class="ion-icon {{$root.settings.icons.youtube}} {{$root.settings.colors.primary_color}}"></a>
 
 		    <!-- Social inputs -->
 		    <label class="item item-input" ng-if="$root.bools.editSocial === true">
-		      <i class="icon ion-social-facebook-outline placeholder-icon"></i>
+		      <i class="icon {{$root.settings.icons.facebook}} placeholder-icon"></i>
 		      <input type="text" ng-model="$root.inputs.socialFacebook" placeholder="Facebook">
 		    </label>
 		    <label class="item item-input" ng-if="$root.bools.editSocial === true">
-		      <i class="icon ion-social-twitter-outline placeholder-icon"></i>
+		      <i class="icon {{$root.settings.icons.twitter}} placeholder-icon"></i>
 		      <input type="text" ng-model="$root.inputs.socialTwitter" placeholder="Twitter">
 		    </label>
 		    <label class="item item-input" ng-if="$root.bools.editSocial === true">
-		      <i class="icon ion-social-instagram-outline placeholder-icon"></i>
+		      <i class="icon {{$root.settings.icons.instagram}} placeholder-icon"></i>
 		      <input type="text" ng-model="$root.inputs.socialInstagram" placeholder="Instagram">
 		    </label>
 		    <label class="item item-input" ng-if="$root.bools.editSocial === true">
-		      <i class="icon ion-social-youtube-outline placeholder-icon"></i>
+		      <i class="icon {{$root.settings.icons.youtube}} placeholder-icon"></i>
 		      <input type="text" ng-model="$root.inputs.socialYoutube" placeholder="YouTube">
 		    </label>
 		</div>
@@ -52,45 +53,45 @@
 		<div class="list">
 			<!-- Location info -->
 
-			<a ng-if="$root.bools.editSocial !== true" class="item item-icon-left" href="#">
-				<i class="icon ion-ios-navigate-outline"></i>
+			<a ng-if="$root.bools.editSocial !== true" class="item item-icon-left {{$root.settings.colors.text_color}} " href="#">
+				<i class="icon {{$root.settings.icons.city}}"></i>
 				{{$root.data.contact.info.city}}
 			</a>
 
-			<a ng-if="$root.bools.editSocial !== true" class="item item-icon-left" href="#">
-				<i class="icon ion-ios-navigate-outline"></i>
+			<a ng-if="$root.bools.editSocial !== true" class="item item-icon-left {{$root.settings.colors.text_color}} " href="#">
+				<i class="icon {{$root.settings.icons.zip}}"></i>
 				{{$root.data.contact.info.postal_code}}
 			</a>
 
-			<a ng-if="$root.bools.editSocial !== true" class="item item-icon-left" href="#">
-				<i class="icon ion-ios-location-outline"></i>
+			<a ng-if="$root.bools.editSocial !== true" class="item item-icon-left {{$root.settings.colors.text_color}} " href="#">
+				<i class="icon {{$root.settings.icons.state}}"></i>
 				{{$root.data.contact.info.state}}
 			</a>
 
-			<a ng-if="$root.bools.editSocial !== true" class="item item-icon-left" href="#">
-				<i class="icon ion-map"></i>
+			<a ng-if="$root.bools.editSocial !== true" class="item item-icon-left {{$root.settings.colors.text_color}} " href="#">
+				<i class="icon {{$root.settings.icons.country}}"></i>
 				{{$root.data.contact.info.country}}
 			</a>
 
 			<!-- Location inputs -->
 
 			<label class="item item-input" ng-if="$root.bools.editSocial === true">
-		      <i class="icon ion-ios-navigate-outline placeholder-icon"></i>
+		      <i class="icon {{$root.settings.icons.city}} placeholder-icon"></i>
 		      <input type="text" ng-model="$root.inputs.socialCity" placeholder="City">
 		    </label>
 
 		    <label class="item item-input" ng-if="$root.bools.editSocial === true">
-		      <i class="icon ion-ios-navigate-outline placeholder-icon"></i>
+		      <i class="icon {{$root.settings.icons.zip}} placeholder-icon"></i>
 		      <input type="text" ng-model="$root.inputs.socialZip" placeholder="ZIP Code">
 		    </label>
 
 		    <label class="item item-input" ng-if="$root.bools.editSocial === true">
-		      <i class="icon ion-ios-location-outline placeholder-icon"></i>
+		      <i class="icon {{$root.settings.icons.state}} placeholder-icon"></i>
 		      <input type="text" ng-model="$root.inputs.socialState" placeholder="State">
 		    </label>
 
 		    <label class="item item-input" ng-if="$root.bools.editSocial === true">
-		      <i class="icon ion-map placeholder-icon"></i>
+		      <i class="icon {{$root.settings.icons.country}} placeholder-icon"></i>
 		      <input type="text" ng-model="$root.inputs.socialCountry" placeholder="Country">
 		    </label>
 		</div>
@@ -99,15 +100,15 @@
 			<!-- Contact buttons -->
 
 			<a href="tel:{{$root.data.contact.info.phone}}" class="col">
-				<i class="ion-icon ion-ios-telephone-outline positive"></i>
+				<i class="ion-icon {{$root.settings.icons.phone}} {{$root.settings.colors.primary_color}}"></i>
 			</a>
 
 			<a mailto="mailto:{{$root.data.contact.info.mail}}" class="col">
-				<i class="ion-icon ion-ios-email-outline positive"></i>
+				<i class="ion-icon {{$root.settings.icons.email}} {{$root.settings.colors.primary_color}}"></i>
 			</a>
 
 			<div class="col" ng-click="openLink($root.data.contact.info.website)">
-				<i class="ion-icon ion-ios-world-outline positive"></i>
+				<i class="ion-icon {{$root.settings.icons.website}} {{$root.settings.colors.primary_color}}"></i>
 			</div>
 
 		</div>
@@ -115,17 +116,17 @@
 		<!-- Contact inputs -->
 
 		<label class="item item-input" ng-if="$root.bools.editSocial === true">
-		  <i class="icon ion-ios-telephone-outline placeholder-icon"></i>
+		  <i class="icon {{$root.settings.icons.phone}} placeholder-icon"></i>
 		  <input type="text" ng-model="$root.inputs.socialPhone" placeholder="Phone">
 		</label>
 
 		<label class="item item-input" ng-if="$root.bools.editSocial === true">
-		  <i class="icon ion-ios-email-outline placeholder-icon"></i>
+		  <i class="icon {{$root.settings.icons.email}} placeholder-icon"></i>
 		  <input type="text" ng-model="$root.inputs.socialMail" placeholder="Mail">
 		</label>
 
 		<label class="item item-input" ng-if="$root.bools.editSocial === true">
-		  <i class="icon ion-ios-world-outline placeholder-icon"></i>
+		  <i class="icon {{$root.settings.icons.website}} placeholder-icon"></i>
 		  <input type="text" ng-model="$root.inputs.socialWebsite" placeholder="Website">
 		</label>
 	</ion-content>
